@@ -1,0 +1,30 @@
+{
+  "name": "memory_game",
+  "version": "1.0.0",
+  "description": "The game board consists of sixteen cards arranged randomly in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. Each turn:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frankusky/memory_game.git"
+  },
+  "keywords": [],
+  "author": "Frank Sam Hu <fsh1991@hotmail.com> (https://github.com/Frankusky)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Frankusky/memory_game/issues"
+  },
+  "homepage": "https://github.com/Frankusky/memory_game#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "gulp-clean-css": "^3.7.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8"
+  }
+}
