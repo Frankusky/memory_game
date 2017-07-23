@@ -51,7 +51,7 @@
 			$(".pickedCard").removeClass("pickedCard");
 			firstCard = {};
 		}
-		if(!thisCard.hasClass("pickedCard")){
+		if(!thisCard.hasClass("pickedCard")&&thisCard.css("background-image")==="none"){
 			thisCard.css("background-image","url(assets/img/"+value+".gif)");
 			thisCard.addClass("pickedCard");
 			/*First click for each pair*/
