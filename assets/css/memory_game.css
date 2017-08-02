@@ -11,54 +11,57 @@ html,body{
 	margin:0 auto;
 	position: relative;
 }
-.title{
+#pageTitle{
 	font-size: 18px;
 	font-weight: bold;
 }
-.subtitle{
+#author{
 	font-size: 10px;
 }
 .row{
 	text-align: center;
 }
-.modal{
+#modal{
 	width:100%;
 	height: 100%;
 	position: absolute;
 	text-align: center;
 	background: white;
 }
-.winMessage,#startMessage{
+#winMessage,#startMessage{
 	top:25%;
 	position: absolute;
 	left:0;
 	right:0;
 }
-.winMessage{
+#winMessage{
 	display: none
 }
-.header{
+#howToPlay{
 	font-size: 30px;
 	margin-bottom: 20px;
 }
-.content{
+#description{
 	text-align: justify;
 	font-size: 12px;
 	max-width: 70%;
 	margin: 0 auto;
 	margin-bottom: 10px;
 }
-.winMessage *{
+#winMessage *{
 	display: inline-block;
-}
-.winMessage img{
 	vertical-align: middle;
 }
-.winTitle{
+#winTitle{
 	font-size: 30px;
 }
-.winSubtitle{
+#winSubtitle{
 	font-size: 24px;
+}
+#statusBar>div{
+	display: inline-block;
+	width:33%;
+	text-align: center;
 }
 .card{
 	width:10%;
@@ -70,8 +73,12 @@ html,body{
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: cover;
-	background-image: url(../img/cardBack.jpg)
+	background-image: url(../img/cardBack.jpg);
 }
 .pickedCard{
 	box-shadow: 0px 0px 10px black;
+}
+.new_game{
+	display: block;
+	margin: 0 auto;
 }

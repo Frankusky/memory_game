@@ -10,16 +10,16 @@
 
 <body>
 	<div class="container">
-		<div class="title">Memory Game</div>
-		<div class="subtitle">By Frank Sam Hu</div>
+		<div id="pageTitle">Memory Game</div>
+		<div id="author">By Frank Sam Hu</div>
 
 	</div>
 	<div class="container">
-		<div class="modal">
+		<div id="modal">
 			<div id="startMessage">
-				<div class="gameDescription">
-					<div class="header">How To Play</div>
-					<div class="content">
+				<div>
+					<div id="howToPlay">How To Play</div>
+					<div id="description">
 						The game board consists of sixteen cards arranged randomly in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. Flip over two hidden cards at a time to locate the ones that match! <br><br> Each turn:
 						<ul>
 							<li>Flip one card over to reveal its underlying symbol</li>
@@ -30,20 +30,35 @@
 						The game ends once all cards have been correctly matched.
 					</div>
 				</div>
-				<button class="new_game">New Game</button>
+				<button class="new_game">Lets Play!</button>
 			</div>
-			<div class="winMessage">
+			<div id="winMessage">
 				<img src="assets/img/pandaDance.gif" alt="">
-				<div class="winText">
-					<span class="winTitle">Congratulations!</span><br>
-					<span class="winSubtitle">You win!</span>
+				<div id="winText">
+					<span id="winTitle">Congratulations!</span><br>
+					<span id="winSubtitle">You win!</span><br>
+					<span id="stats"></span>
 					<br>
-					<button class="new_game">New Game</button>
+					<button class="new_game">Restart Game</button>
 				</div>
 				<img src="assets/img/pandaDance.gif" alt="">
 			</div>
 		</div>
-		<div id="gameContainer">
+		<div id="statusBar">
+			<div>
+				<div class="statusBarTitle">Moves</div>
+				<div id="movesAmount">0</div>
+			</div>
+			<div>
+				<div class="statusBarTitle">Time Elapsed</div>
+				<div id="timer">0 sec</div>
+			</div>
+			<div>
+				<div class="statusBarTitle">Stars</div>
+				<div id="starsAmount">★★★</div>
+			</div>
+		</div>
+		<div>
 			<div class="row">
 				<div class="card"></div>
 				<div class="card"></div>
@@ -68,6 +83,7 @@
 				<div class="card"></div>
 				<div class="card"></div>
 			</div>
+			<button class="new_game">Restart Game</button>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
