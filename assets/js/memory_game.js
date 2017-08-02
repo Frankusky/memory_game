@@ -7,7 +7,7 @@
 		pandaImage.src = "assets/img/" + (i + 1) + ".gif";
 	}
 
-	let memoryCardPositions = [[], [], [], []],//Stores the pair random numbers for each card
+	let memoryCardPositions = [[], [], [], []], //Stores the pair random numbers for each card
 		firstCard = {}; //Stores the first clicked card for each pair of cards
 
 	/*Checks if the random number dont have been used or dont have a pair*/
@@ -42,7 +42,7 @@
 		seconds = 0,
 		moves = 0;
 
-	let checkMovesAmmount = () =>{
+	let checkMovesAmmount = () => {
 		moves++;
 		$("#movesAmount").text(moves);
 		if (moves === 11 || moves === 15) { //after 10 or 14 (not inclusive) moves, remove 1 star
@@ -51,9 +51,9 @@
 			}).fadeIn();
 		}
 	}
-	
+
 	/**/
-	let executeElapsedTime = () =>{
+	let executeElapsedTime = () => {
 		runTimer = false;
 		timer = setInterval(() => {
 			seconds++;
@@ -86,9 +86,10 @@
 				firstCard.dom = thisCard;
 			} else { /*Second click for each pair*/
 				checkMovesAmmount();
+				$(".hintCard").removeClass("hintCard");
 				if (firstCard.value === value) { /*is a pair*/
 					matchedPair = true;
-					thisCard.addClass("pairFounded");//adding flags to know how much pair of cards has been found
+					thisCard.addClass("pairFounded"); //adding flags to know how much pair of cards has been found
 					firstCard.dom.addClass("pairFounded");
 					$(".pickedCard").removeClass("pickedCard");
 					firstCard = {}
@@ -96,7 +97,7 @@
 					if ($(".pairFounded").length === 16) {
 						$("#modal, #winMessage").fadeIn();
 						let earnedStars = $("#starsAmount").text();
-						$("#stats").html("Total Time: "+seconds+" seconds<br>Total Moves: " + moves + "<br>Stars: " + earnedStars)
+						$("#stats").html("Total Time: " + seconds + " seconds<br>Total Moves: " + moves + "<br>Stars: " + earnedStars)
 					}
 				} else {
 					matchedPair = false;
@@ -110,15 +111,52 @@
 			}
 		}
 	});
+	//SOMEDAY TODO: make a div alert, browser alert experience sucks but im lazy >_<
+	/*When users clicks on hint button show three possible cards*/
+	$("#hint").click(function () {
+		/*Preventing double clicking hint button*/
+		let hintBtnDom = $("#hint")
+		if ($(".hintCard").length !== 0) {
+			return false
+		}
+		let pairFoundAmmount = $(".pairFounded").length;
+		/*If near end of game make him/her suffer :)*/
+		let remainingHints = Number(hintBtnDom.text().replace(/\D+/g, ""));
+		if (pairFoundAmmount >= 12) {
+			alert("Too few cards, don´t give up, you almost got it!");
+			hintBtnDom.attr("disabled", "enabled");
+		} else if ($(".pickedCard").length === 1 && pairFoundAmmount < 13 && remainingHints !== 0) {
+			hintBtnDom.text("Hint (" + (remainingHints - 1) + ")")
+			if(remainingHints===0){
+				hintBtnDom.attr("disabled", "enabled");
+			}
+			/*Find where is the another pair*/
+			for (let x = 0; x < 4; x++) {
+				for (let y = 0; y < 4; y++) {
+					if (memoryCardPositions[x][y] === firstCard.value) {
+						$(".row:nth-child(" + (x + 1) + ")>.card:nth-child(" + (y + 1) + ")").addClass("hintCard")
+					}
+				}
+			}
+			/*Choose randomly two hidden cards*/
+			while ($(".hintCard").length < 4) {
+				let hiddenCards = $(".card").not(".pickedCard,.hintCard,.pairFounded");
+				let randomCardPosition = Math.floor(Math.random() * (hiddenCards.length)) + 1;
+				$(hiddenCards[randomCardPosition]).addClass("hintCard");
+			}
+		} else {
+			alert("You must first select a card");
+		}
+	});
 	/*When users click new game button reset all values to their default value*/
 	$(".new_game").click(function () {
 		$("#modal").fadeOut();
 		$("#startMessage").css("display", "none");
-		$(".card").css("background-image", "");
+		$(".card").css("background-image", "").removeClass("pickedCard hintCard pairFounded");
 		$("#starsAmount").html("★★★");
 		$("#movesAmount").html("0");
 		$("#timer").html(0);
-		$(".pairFounded").removeClass("pairFounded");
+		$("#hint").text("Hint (3)");
 		clearInterval(timer);
 		firstCard = {};
 		memoryCardPositions = [[], [], [], []];
