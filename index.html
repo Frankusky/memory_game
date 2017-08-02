@@ -1,47 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Memory Game</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="assets/css/memory_game.min.css">
 </head>
+
 <body>
 	<div class="container">
 		<div class="title">Memory Game</div>
 		<div class="subtitle">By Frank Sam Hu</div>
-		<button id="new_game">New Game</button>
+
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
+		<div class="modal">
+			<div id="startMessage">
+				<div class="gameDescription">
+					<div class="header">How To Play</div>
+					<div class="content">
+						The game board consists of sixteen cards arranged randomly in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. Flip over two hidden cards at a time to locate the ones that match! <br><br> Each turn:
+						<ul>
+							<li>Flip one card over to reveal its underlying symbol</li>
+							<li>Then turns over a second card, trying to find the corresponding card with the same symbol</li>
+							<li>If the cards match, both cards stay flipped over</li>
+							<li>If the cards do not match, both cards are returned to their initial hidden state</li>
+						</ul>
+						The game ends once all cards have been correctly matched.
+					</div>
+				</div>
+				<button class="new_game">New Game</button>
+			</div>
+			<div class="winMessage">
+				<img src="assets/img/pandaDance.gif" alt="">
+				<div class="winText">
+					<span class="winTitle">Congratulations!</span><br>
+					<span class="winSubtitle">You win!</span>
+					<br>
+					<button class="new_game">New Game</button>
+				</div>
+				<img src="assets/img/pandaDance.gif" alt="">
+			</div>
 		</div>
-		<div class="row">
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
-		</div>
-		<div class="row">
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
-		</div>
-		<div class="row">
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
-			<div class="card"></div>
+		<div id="gameContainer">
+			<div class="row">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+			</div>
+			<div class="row">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+			</div>
+			<div class="row">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+			</div>
+			<div class="row">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+			</div>
 		</div>
 	</div>
-	<script
-			src="https://code.jquery.com/jquery-3.2.1.min.js"
-			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-			crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="assets/js/memory_game.min.js"></script>
 </body>
+
 </html>

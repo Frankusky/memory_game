@@ -7,7 +7,6 @@
 		pandaImage.src = "assets/img/"+(i+1)+".gif";
 	}
 	
-	
 	let memoryCardPositions = [[], [], [], []], /*Stores the pair random numbers for each card*/
 		firstCard = {}; /*Stores the first clicked card for each pair of cards*/
 	
@@ -36,7 +35,7 @@
 	poblateRandomCardsPosition();
 	
 	/*******************************************************UI SECTION************************************/
-	let cleanPickedCards = 0,
+	let cleanPickedCardsTimer = 0,
 		matchedPair = false;
 	
 	/*When user clicks a card event*/
@@ -46,12 +45,12 @@
 			cardVerticalPostion = thisCard.parent().index(),
 			value = memoryCardPositions[cardVerticalPostion][cardHorizontalPosition];
 		if($(".pickedCard").length>1) {
-			clearTimeout(cleanPickedCards)
+			clearTimeout(cleanPickedCardsTimer)
 			if(!matchedPair) $(".pickedCard").css("background-image","")
 			$(".pickedCard").removeClass("pickedCard");
 			firstCard = {};
 		}
-		if(!thisCard.hasClass("pickedCard")&&thisCard.css("background-image")==="none"){
+		if(!thisCard.hasClass("pickedCard")&&thisCard.css("background-image").indexOf("cardBack")!==-1){
 			thisCard.css("background-image","url(assets/img/"+value+".gif)");
 			thisCard.addClass("pickedCard");
 			/*First click for each pair*/
@@ -61,22 +60,28 @@
 			}else{/*Second click for each pair*/
 				if(firstCard.value === value){/*is a pair*/
 					matchedPair = true;
+					thisCard.addClass("pairFounded")
+					firstCard.dom.addClass("pairFounded")
 					$(".pickedCard").removeClass("pickedCard");
 					firstCard = {}
+					if($(".pairFounded").length===16){
+						$(".modal, .winMessage").fadeIn();
+					}
 				}else{
 					matchedPair = false;
-					cleanPickedCards = setTimeout(function(){
+					cleanPickedCardsTimer = setTimeout(function(){
 						$(".pickedCard").css("background-image","")
 						$(".pickedCard").removeClass("pickedCard");
 						firstCard = {};
 					},500)
 				}
-				
 			}
 		}
 	});
 	/*When users click new game button*/
-	$("#new_game").click(function(){
+	$(".new_game").click(function(){
+		$(".modal").fadeOut();
+		$("#startMessage").css("display","none");
 		memoryCardPositions = [[], [], [], []];
 		firstCard = {};
 		$(".card").css("background-image","");
